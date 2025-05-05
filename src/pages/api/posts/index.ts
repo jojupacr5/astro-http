@@ -3,7 +3,6 @@ import { getCollection, getEntry } from "astro:content";
 
 export const prerender = false;
 
-
 export const GET: APIRoute = async ({ params, request }) => {
 
   const url = new URL(request.url);
@@ -24,7 +23,7 @@ export const GET: APIRoute = async ({ params, request }) => {
         }
       );
     }
-    
+
     return new Response(
       JSON.stringify(post),
       { 
