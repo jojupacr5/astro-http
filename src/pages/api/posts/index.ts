@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection, getEntry } from "astro:content";
+import { db, Posts } from "astro:db";
 
 export const prerender = false;
 
@@ -37,7 +38,8 @@ export const GET: APIRoute = async ({ params, request }) => {
     );
   }
 
-  const posts = await getCollection("blog");
+  //const posts = await getCollection("blog");
+  const posts = await db.select().from(Posts);
 
   return new Response(
     JSON.stringify(posts),
