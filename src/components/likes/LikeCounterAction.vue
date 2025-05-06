@@ -26,13 +26,11 @@ const likeCount = ref(0);
 const likeClicks = ref(0);
 const isLoading = ref(true);
 
-watch( likeCount, () => {
-  fetch(`/api/posts/likes/${props.postId}`, {
-    method: 'PUT',
-    body: JSON.stringify({ likes: likeClicks.value }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
+watch( likeCount, async () => {
+  
+  await actions.updatePostLikes({
+    postId: props.postId,
+    increment: likeClicks.value,
   });
 
   likeClicks.value = 0;
